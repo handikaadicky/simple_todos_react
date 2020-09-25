@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-function InputTodo() {
-  const [newTodo, setNewTodo] = useState("");
-  const [todos, setTodos] = useState([]);
-
+function InputTodo({ newTodo, setNewTodo, todos, setTodos }) {
   const handleNewTodoChange = (env) => {
     env.preventDefault();
     setNewTodo(env.target.value);
