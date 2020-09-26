@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import InputTodo from "./Components/InputTodo";
+import Form from "./Components/Form";
 
 function App() {
   
@@ -10,7 +10,7 @@ function App() {
   return (
     <div>
       Simple Todo List
-      <InputTodo
+      <Form
         newTodo={newTodo}
         setNewTodo={setNewTodo}
         todos={todos}
