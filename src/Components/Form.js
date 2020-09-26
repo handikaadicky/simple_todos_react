@@ -26,7 +26,7 @@ function Form({ newTodo, setNewTodo, todos, setTodos }) {
           add
         </button>
         {todos.map((todo) => (
-          <TodoList key={todo.id} list={todo.text} />
+          <TodoList setTodos={setTodos} todos={todos} key={todo.id} list={todo.text} listId={todo.id} />
         ))}
       </form>
     </div>
