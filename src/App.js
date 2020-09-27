@@ -1,35 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Form from "./Components/Form";
-import TodoList from './Components/TodoList'
+import TodoList from "./Components/TodoList";
 
 function App() {
   const [newTodo, setNewTodo] = useState("");
   const [todos, setTodos] = useState([]);
-  const [completed, setCompleted] = useState([...todos, { completed: true }]);
+  const [status, setStatus] = useState("all");
+  const [filtered, setFiltered] = useState([]);
+
+  const handleFilter = () => {
+    switch (status) {
+      case "uncompleted":
+        setFiltered(todos.filter((todo) => todo.completed === false));
+        break;
+      case "completed":
+        setFiltered(todos.filter((todo) => todo.completed === true));
+        break;
+      default:
+        setFiltered(todos);
+        break;
+    }
+  };
+
+  // useEffect
+  useEffect(() => {
+    handleFilter();
+  }, [todos, status]);
 
   return (
     <div>
+      {status}
       Simple Todo List
       <Form
         newTodo={newTodo}
         setNewTodo={setNewTodo}
         todos={todos}
         setTodos={setTodos}
-        setCompleted={setCompleted}
-        completed={completed}
+        setStatus={setStatus}
       />
-      
-      {todos.map((todo) => (
-        <TodoList
-          key={todo.id}
-          completed={todo.completed}
-          setTodos={setTodos}
-          todos={todos}
-          todo={todo}
-          list={todo.text}
-        />
-      ))}
+      <TodoList setTodos={setTodos} todos={todos} filtered={filtered} />
     </div>
   );
 }

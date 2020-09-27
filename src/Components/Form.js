@@ -1,7 +1,6 @@
 import React from "react";
-import TodoList from "./TodoList";
 
-function Form({ newTodo, setNewTodo, todos, setTodos, setCompleted, completed  }) {
+function Form({ newTodo, setNewTodo, todos, setTodos, setStatus }) {
   const handleNewTodoChange = (env) => {
     setNewTodo(env.target.value);
   };
@@ -16,10 +15,9 @@ function Form({ newTodo, setNewTodo, todos, setTodos, setCompleted, completed  }
     setNewTodo("");
   };
 
-  const handleCompleted = (e) => {
-    console.log(e.target.value)
-    setCompleted(completed);
-  }
+  const handleStatus = (e) => {
+    setStatus(e.target.value);
+  };
 
   return (
     <div>
@@ -32,9 +30,10 @@ function Form({ newTodo, setNewTodo, todos, setTodos, setCompleted, completed  }
         <button type="reset" onClick={handleNewTodo}>
           add
         </button>
-        <select onChange={handleCompleted}>
-          <option>standard</option>
+        <select onChange={handleStatus}>
+          <option>all</option>
           <option>completed</option>
+          <option>uncompleted</option>
         </select>
       </form>
     </div>
